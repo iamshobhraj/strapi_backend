@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ussers",
+  "info": {
+    "singularName": "usser",
+    "pluralName": "ussers",
+    "displayName": "usser",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "password": {
+      "type": "password",
+      "required": true,
+      "minLength": 8,
+      "private": true
+    }
+  }
+}

@@ -386,6 +386,43 @@ export interface ApiTaskTask extends Schema.CollectionType {
   };
 }
 
+export interface ApiUsserUsser extends Schema.CollectionType {
+  collectionName: 'ussers';
+  info: {
+    singularName: 'usser';
+    pluralName: 'ussers';
+    displayName: 'usser';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    username: Attribute.String & Attribute.Required & Attribute.Unique;
+    email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    password: Attribute.Password &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        minLength: 8;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::usser.usser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::usser.usser',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -712,6 +749,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::task.task': ApiTaskTask;
+      'api::usser.usser': ApiUsserUsser;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
